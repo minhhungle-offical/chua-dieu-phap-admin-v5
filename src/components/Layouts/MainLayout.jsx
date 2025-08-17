@@ -14,8 +14,6 @@ export default function MainLayout({ children }) {
   const token = authStore((state) => state.token)
   const user = authStore((state) => state.user)
 
-  console.log('user: ', user)
-
   useEffect(() => {
     ;(async () => {
       try {

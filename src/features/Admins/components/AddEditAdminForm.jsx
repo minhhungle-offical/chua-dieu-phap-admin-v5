@@ -5,6 +5,7 @@ import { forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 
+// ===== Validation schema =====
 const schema = Yup.object().shape({
   email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập Email'),
   fullName: Yup.string().required('Vui lòng nhập Họ và tên'),
@@ -13,6 +14,13 @@ const schema = Yup.object().shape({
     .nullable()
     .transform((val) => (val === '' ? null : val)),
 })
+
+// ===== Field config =====
+const fields = [
+  { name: 'fullName', label: 'Họ và tên', placeholder: 'Vd: Chùa Diệu Pháp' },
+  { name: 'email', label: 'Email', placeholder: 'Vd: example@gmail.com' },
+  { name: 'phone', label: 'Số điện thoại', placeholder: '+84xxxxxxxxx' },
+]
 
 export const AddEditAdminForm = forwardRef(({ loading, data, onSubmit }, ref) => {
   const { control, handleSubmit, reset } = useForm({
@@ -24,32 +32,21 @@ export const AddEditAdminForm = forwardRef(({ loading, data, onSubmit }, ref) =>
 
   useImperativeHandle(ref, () => ({
     submit: handleFormSubmit,
-    reset: (newData) => reset(newData),
+    reset: (newData) => reset({ ...data, ...newData }), // merge data mới với data cũ
   }))
 
   return (
     <Stack component="form" noValidate onSubmit={handleFormSubmit} spacing={2}>
-      <InputField
-        disabled={loading}
-        name="fullName"
-        control={control}
-        label="Họ và tên"
-        placeholder="Vd: Chùa Diệu Pháp"
-      />
-      <InputField
-        disabled={loading}
-        name="email"
-        control={control}
-        label="Email"
-        placeholder="Vd: example@gmail.com"
-      />
-      <InputField
-        disabled={loading}
-        name="phone"
-        control={control}
-        label="Số điện thoại"
-        placeholder="+84xxxxxxxxx"
-      />
+      {fields.map(({ name, label, placeholder }) => (
+        <InputField
+          key={name}
+          name={name}
+          control={control}
+          label={label}
+          placeholder={placeholder}
+          disabled={loading}
+        />
+      ))}
     </Stack>
   )
 })

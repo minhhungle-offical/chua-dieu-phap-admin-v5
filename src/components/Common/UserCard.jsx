@@ -13,10 +13,13 @@ export function UserCard({ user, onEdit, onRemove }) {
       sx={{
         width: '100%',
         borderRadius: 3,
-        boxShadow: 3,
+        boxShadow: 1,
         overflow: 'hidden',
         transition: '0.3s',
         cursor: 'pointer',
+        '&:hover': {
+          boxShadow: 3,
+        },
       }}
     >
       <Box

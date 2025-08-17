@@ -18,4 +18,11 @@ export const retreatApi = {
   remove(id) {
     return axiosClient.delete(`${url}/${id}`)
   },
+  uploadThumbnail(id, body) {
+    return axiosClient.post(`${url}/${id}/thumbnail`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  },
 }

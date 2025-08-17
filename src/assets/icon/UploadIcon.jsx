@@ -1,6 +1,4 @@
-import { PRIMARY_COLOR } from '@/constant/common'
-
-export function UploadIcon({ fill = PRIMARY_COLOR }) {
+export function UploadIcon({ fill = '#007765' }) {
   return (
     <svg
       className="MuiBox-root css-1x10rz0"

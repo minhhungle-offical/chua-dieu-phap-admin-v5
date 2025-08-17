@@ -100,7 +100,7 @@ export function CKEditorField({ name, control, label, disabled = false, onChange
                       ...editorConfig,
                       extraPlugins: [uploadAdapterPlugin],
                     }}
-                    data={value}
+                    data={value || ''}
                     onChange={(event, editor) => {
                       const data = editor.getData()
                       controllerOnChange(data)

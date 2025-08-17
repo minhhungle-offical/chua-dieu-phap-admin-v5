@@ -1,11 +1,8 @@
 import { UploadIcon } from '@/assets/icon/UploadIcon'
-import { PRIMARY_COLOR } from '@/constant/common'
-
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { Box, Button, Typography, styled } from '@mui/material'
 import React from 'react'
 import { useController } from 'react-hook-form'
-import { toast } from 'react-toastify'
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -39,10 +36,10 @@ export function UploadField({
   const handleChange = (e) => {
     const file = e.target.files?.[0]
 
-    if (!file) {
-      toast.error('Không tìm thấy file')
-      return
-    }
+    // if (!file) {
+    //   toast.error('Không tìm thấy file')
+    //   return
+    // }
 
     // if (file.size > 300_000) {
     //   toast.error('Kích thước ảnh phải nhỏ hơn 300KB')
@@ -100,7 +97,7 @@ export function UploadField({
         ) : (
           <UploadIcon
             sx={{ fontSize: 64, color: 'grey.400' }}
-            fill={error ? '#D32F2F' : PRIMARY_COLOR}
+            fill={error ? '#D32F2F' : '#007765'}
           />
         )}
       </Box>

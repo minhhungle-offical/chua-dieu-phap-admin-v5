@@ -9,6 +9,8 @@ import '@fontsource/roboto/700.css'
 import { BrowserRouter } from 'react-router-dom'
 import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider } from '@mui/material'
 import { SnackbarProvider } from 'notistack'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers'
 
 let theme = createTheme({
   palette: {
@@ -28,9 +30,11 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <SnackbarProvider maxSnack={3}>
-          <App />
-        </SnackbarProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <SnackbarProvider maxSnack={3}>
+            <App />
+          </SnackbarProvider>
+        </LocalizationProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
